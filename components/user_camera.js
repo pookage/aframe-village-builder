@@ -3,6 +3,9 @@ AFRAME.registerPrimitive("a-user-camera", {
 		camera: {
 			fov: 60
 		},
+		cursor: {
+			rayOrigin: "mouse"
+		},
 		"wasd-controls": {
 			acceleration: 150,
 			easing: 5
