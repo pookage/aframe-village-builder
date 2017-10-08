@@ -23,17 +23,26 @@ AFRAME.registerComponent("status", {
 		AFRAME.utils.bind(this.hide, this);  element.hide = this.hide;
 		AFRAME.utils.bind(this.show, this);  element.show = this.show;
 
+		//setup
+		this.slowTick       = AFRAME.utils.throttle(this.updateStats, 1000, this);
+		this.updateUIOnTick = false;
+		this.parent         = element.parentEl;
+
 		//create <a-text> elements for every pice of UI data to show
 		const uiData    = data.ui_data;
 		const statCount = Object.keys(uiData).length;
 		const fragment  = document.createDocumentFragment();
 		let position    = { x: 1, y: statCount, z: 0 };
+		let textElement, value;
 		for(let key in uiData){
-			fragment.appendChild(POOKAGE.utils.createElement("a-text", {
-				value: `${key} : ${uiData[key]}`,
+			value       = uiData[key];
+			textElement = POOKAGE.utils.createElement("a-text", {
+				value: `${key} : ${value}`,
 				position: position,
 				width: 20
-			}));
+			});
+			this[`${key}_el`] = textElement;
+			fragment.appendChild(textElement);
 			position.y -= 1;
 		}
 
@@ -43,9 +52,24 @@ AFRAME.registerComponent("status", {
 		//add status to the parent entity
 		element.appendChild(fragment)
 	},//init
+	tick: function(){
+		this.slowTick();
+	},//tick
+	updateStats: function(){
+		if(this.updateUIOnTick){
+			const data = this.parent.getMainComponent().data;
+			let key, element, value;
+			for(key in data){
+				element = this[`${key}_el`];
+				value   = Math.round(data[key]*100)/100;
+				element.setAttribute("value", `${key} : ${value}`);
+			}
+		}
+	},//updateStats
 	hide: function(){
-		const element = this.el || this;
-		const children = element.children;
+		const element   = this.el || this;
+		const component = element.components.status;
+		const children  = element.children;
 
 		for(let child of children){
 			child.setAttribute("visible", false);
@@ -53,10 +77,13 @@ AFRAME.registerComponent("status", {
 
 		element.setAttribute("visible", false);
 		element.setAttribute("scale", {x: 0, y: 0, z: 0});
-	},
+
+		component.updateUIOnTick = false;
+	},//hide
 	show: function(){
-		const element  = this.el || this;
-		const children = element.children;
+		const element   = this.el || this;
+		const component = element.components.status;
+		const children  = element.children;
 
 		for(let child of children){
 			child.setAttribute("visible", true);
@@ -64,5 +91,7 @@ AFRAME.registerComponent("status", {
 
 		element.setAttribute("visible", true);
 		element.setAttribute("scale", {x: 1, y: 1, z: 1});
-	}
+
+		component.updateUIOnTick = true;
+	}//show
 })
