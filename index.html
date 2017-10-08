@@ -11,17 +11,22 @@
 	<script src="components/pook.js"></script>
 	<script src="components/crop_field.js"></script>
 	<script src="components/crops.js"></script>
+	<script src="components/windmill.js"></script>
+	<script src="components/bakery.js"></script>
+
 </head>
 <body>
-	<a-scene stats>
+	<a-scene>
 
 		<a-assets>
 			<a-asset-item 
-				id="oats_model" 
-				src="assets/plants/crops/oats/model.obj">		
+				id="wheat_model" 
+				src="assets/plants/crops/wheat/model.obj">		
 			</a-asset-item>
 		</a-assets>
 
+
+		<!--ENTITIES-->
 		<a-pook
 			position="0 0 -10">
 		</a-pook>
@@ -32,25 +37,30 @@
 			position="10 0 -5">
 		</a-pook>
 
-		<a-plane
-			shadow="cast: false; receive: true;"
-			roughness="1"
-			color="#ccc"
-			height="250",
-			width="250",
-			rotation="-90 0 0">
-		</a-plane>
+
+		<a-bakery
+			position="20 0 -15"
+			rotation="0 -60 0">
+		</a-bakery>
+
+		<a-windmill
+			position="-20 0 -20">
+		</a-windmill>
+		
 
 		<a-crop-field
 			position="-20 0 0"
-			type="oats"
+			type="wheat"
 			count="18">
 		</a-crop-field>
 
+
+		<!--CAMERA-->
 		<a-user-camera>
 		</a-user-camera>
 
 
+		<!--SCENE LIGHTING -->
 		<a-light
 			type="point"
 			intensity="0.2"
@@ -61,6 +71,16 @@
 			type="ambient"
 			intensity="0.8">
 		</a-light>
+
+		<!--GROUND-->
+		<a-plane
+			shadow="cast: false; receive: true;"
+			roughness="1"
+			color="#ccc"
+			height="250",
+			width="250",
+			rotation="-90 0 0">
+		</a-plane>
 
 	</a-scene>
 </body>

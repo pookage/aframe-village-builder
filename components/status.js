@@ -10,7 +10,7 @@ AFRAME.registerPrimitive("a-status", {
 		ui_data: "status.ui_data",
 		follow_camera: "status.follow_camera"
 	}
-})
+});
 AFRAME.registerComponent("status", {
 	schema: {
 		ui_data: {

@@ -9,6 +9,13 @@ AFRAME.registerComponent("status_ui", {
 				y: 0, 
 				z: 0
 			}
+		},
+		rotation: {
+			default: {
+				x: 0,
+				y: 0,
+				z: 0
+			}
 		}
 	},
 	init: function(){
@@ -20,7 +27,8 @@ AFRAME.registerComponent("status_ui", {
 		const status    = POOKAGE.utils.createElement("a-status", {
 			"ui_data": JSON.stringify(compData),
 			"follow_camera" : data.follow_camera,
-			"position": data.offset
+			"position": data.offset,
+			"rotation": data.rotation
 		});
 
 		this.ui_data = status;

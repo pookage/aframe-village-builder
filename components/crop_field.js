@@ -25,7 +25,7 @@ AFRAME.registerPrimitive("a-crop-field", {
 AFRAME.registerComponent("crop_field", {
 	schema: {
 		type: {
-			default: "oats"
+			default: "wheat"
 		},
 		count: {
 			default: 25

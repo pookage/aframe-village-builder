@@ -10,7 +10,7 @@ AFRAME.registerPrimitive("a-crop", {
 AFRAME.registerComponent("crop", {
 	schema: {
 		type: {
-			default: "oats"
+			default: "wheat"
 		}
 	},
 	init: function(){
