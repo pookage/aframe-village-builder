@@ -1,7 +1,7 @@
 var POOKAGE = {
 	utils : {
 		createElement: function createElement(type, attributes){
-			const element = document.createElement(`a-${type}`);
+			const element   = document.createElement(type);
 			setAttributes(element, attributes);
 			return element;
 		},//createElement
@@ -9,6 +9,7 @@ var POOKAGE = {
 			for(let key in attributes) {
 				element.setAttribute(key, attributes[key]);
 			}
+			return element;
 		}//setAttribute
 	}
 }
