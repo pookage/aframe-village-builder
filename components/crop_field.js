@@ -69,9 +69,11 @@ AFRAME.registerComponent("crop_field", {
 			}
 		}
 		element.appendChild(container);
-
 	},
 	getMainComponent: function(){
 		return this;
-	}
+	},
+	harvest: function(count){
+		
+	}//harvet
 })

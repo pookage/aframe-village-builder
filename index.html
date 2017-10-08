@@ -4,15 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Village Builder</title>
 	<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+	
+	<!--UTILS-->
 	<script src="js/utils.js"></script>
-	<script src="components/user_camera.js"></script>
 	<script src="components/status.js"></script>
 	<script src="components/status_ui.js"></script>
+
+	<!--POOK COMPONENTS-->
+	<script src="components/navigator.js"></script>
+	<script src="components/task_manager.js"></script>
+	<script src="components/brain.js"></script>
 	<script src="components/pook.js"></script>
+	
+
+	<!--OBJECTS-->
 	<script src="components/crop_field.js"></script>
 	<script src="components/crops.js"></script>
 	<script src="components/windmill.js"></script>
 	<script src="components/bakery.js"></script>
+
+	<!--ENVIRONMENT-->
+	<script src="components/user_camera.js"></script>
 
 </head>
 <body>
@@ -28,27 +40,24 @@
 
 		<!--ENTITIES-->
 		<a-pook
-			position="0 0 -10">
-		</a-pook>
-		<a-pook
-			position="10 0 -8">
-		</a-pook>
-		<a-pook
-			position="10 0 -5">
+			position="20 0 -10">
 		</a-pook>
 
 
 		<a-bakery
+			id="bakery"
 			position="20 0 -15"
 			rotation="0 -60 0">
 		</a-bakery>
 
 		<a-windmill
+			id="windmill"
 			position="-20 0 -20">
 		</a-windmill>
 		
 
 		<a-crop-field
+			id="farm"
 			position="-20 0 0"
 			type="wheat"
 			count="18">

@@ -39,7 +39,7 @@ AFRAME.registerComponent("bakery", {
 		element.getMainComponent = this.getMainComponent.bind(this);
 	},
 	play: function(){
-		const element = this.el;
+		const element          = this.el;
 		const { width, depth } = element.getAttribute("geometry");
 		AFRAME.utils.entity.setComponentProperty(element, "status_ui.offset", { x: (width/2) + 0.5, y: 0.05, z: (depth/2) + 0.5 })
 	},

@@ -4,6 +4,7 @@ AFRAME.registerComponent("status_ui", {
 			default: false
 		},
 		offset: {
+			type: "vec3",
 			default: {
 				x: 0,
 				y: 0, 
@@ -11,6 +12,7 @@ AFRAME.registerComponent("status_ui", {
 			}
 		},
 		rotation: {
+			type: "vec3",
 			default: {
 				x: 0,
 				y: 0,

@@ -9,6 +9,9 @@ AFRAME.registerPrimitive("a-pook", {
 				z: 0
 			}
 		},
+		brain: {},
+		navigator: {},
+		task_manager: {},
 		geometry: {
 			primitive: "box",
 			width: 0.6,
@@ -26,10 +29,16 @@ AFRAME.registerPrimitive("a-pook", {
 AFRAME.registerComponent("pook", {
 	schema: {
 		health: {
-			default: 1
+			default: 100
 		},
 		hunger: {
-			default: 0
+			default: 100
+		},
+		role: {
+			default: "courier"
+		},
+		inventory: {
+			default: new Array(3)
 		}
 	},
 	init: function(){
