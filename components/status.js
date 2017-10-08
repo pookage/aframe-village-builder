@@ -7,7 +7,8 @@ AFRAME.registerPrimitive("a-status", {
 		}
 	},
 	mappings: {
-		ui_data: "status.ui_data"
+		ui_data: "status.ui_data",
+		follow_camera: "status.follow_camera"
 	}
 })
 AFRAME.registerComponent("status", {
@@ -17,6 +18,9 @@ AFRAME.registerComponent("status", {
 			parse: function(value){
 				return JSON.parse(value);
 			}
+		},
+		follow_camera: {
+			default: false
 		}
 	},
 	init: function(){
@@ -37,7 +41,7 @@ AFRAME.registerComponent("status", {
 		const uiData    = data.ui_data;
 		const statCount = Object.keys(uiData).length;
 		const fragment  = document.createDocumentFragment();
-		let position    = { x: 1, y: statCount, z: 0 };
+		let position    = { x: 0, y: statCount, z: 0 };
 		let textElement, value;
 		for(let key in uiData){
 			value       = uiData[key];
@@ -61,16 +65,20 @@ AFRAME.registerComponent("status", {
 	tick: function(){
 		if(this.isVisible){
 			this.slowTick();
-			this.lookAtCamera();
+			if(this.data.follow_camera){
+				this.lookAtCamera();
+			}
 		}
 	},//tick
 	updateStats: function(){
 		const data = this.parent.getMainComponent().data;
-		let key, element, value;
+		let key, element, value, checkedValue;
 		for(key in data){
+			value        = data[key];
+			checkedValue = Number.isInteger(value) ? Math.round(value*100)/100 : value;
 			element = this[`${key}_el`];
-			value   = Math.round(data[key]*100)/100;
-			element.setAttribute("value", `${key} : ${value}`);
+			
+			element.setAttribute("value", `${key} : ${checkedValue}`);
 		}
 	},//updateStats
 	lookAtCamera: function(){

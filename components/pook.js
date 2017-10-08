@@ -1,7 +1,14 @@
 AFRAME.registerPrimitive("a-pook", {
 	defaultComponents: {
 		pook: {},
-		status_ui: {},
+		status_ui: {
+			follow_camera: true,
+			offset: {
+				x: 0,
+				y: 1,
+				z: 0
+			}
+		},
 		geometry: {
 			primitive: "box",
 			width: 0.6,
