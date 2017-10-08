@@ -9,9 +9,19 @@
 	<script src="components/status.js"></script>
 	<script src="components/status_ui.js"></script>
 	<script src="components/pook.js"></script>
+	<script src="components/crop_field.js"></script>
+	<script src="components/crops.js"></script>
 </head>
 <body>
-	<a-scene>
+	<a-scene stats>
+
+		<a-assets>
+			<a-asset-item 
+				id="oats_model" 
+				src="assets/plants/crops/oats/model.obj">		
+			</a-asset-item>
+		</a-assets>
+
 		<a-pook
 			position="0 0 -10">
 		</a-pook>
@@ -31,6 +41,11 @@
 			rotation="-90 0 0">
 		</a-plane>
 
+		<a-crop-field
+			position="-20 0 0"
+			type="oats">
+		</a-crop-field>
+
 		<a-user-camera>
 		</a-user-camera>
 
@@ -48,4 +63,7 @@
 
 	</a-scene>
 </body>
+	<!--
+		Fern plant asset by Geoffrey Bell : https://vr.google.com/objects/fQ9cPdkwvAY
+	-->
 </html>
