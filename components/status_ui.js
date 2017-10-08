@@ -17,6 +17,8 @@ AFRAME.registerComponent("status_ui", {
 			visible: false
 		});
 
+		//YOU SHOULD CREATE A <A-STATS> COMPONENT THAT CAN BE CREATED HERE AND INITIALISED DISPLAYING COMPDATA
+
 		element.appendChild(this.background);
 		element.addEventListener("click", this.toggleStats);
 

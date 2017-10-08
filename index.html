@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Village Builder</title>
 	<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-
 	<script src="js/utils.js"></script>
 	<script src="components/user_camera.js"></script>
 	<script src="components/status_ui.js"></script>
@@ -22,9 +21,30 @@
 			position="10 0 -5">
 		</a-pook>
 
+		<a-plane
+			shadow="cast: false; receive: true;"
+			roughness="1"
+			color="#ccc"
+			height="250",
+			width="250",
+			rotation="-90 0 0">
+		</a-plane>
 
 		<a-user-camera>
 		</a-user-camera>
+
+
+		<a-light
+			type="point"
+			intensity="0.2"
+			position="-25 30 25"
+			light="castShadow: true;">
+		</a-light>
+		<a-light
+			type="ambient"
+			intensity="0.8">
+		</a-light>
+
 	</a-scene>
 </body>
 </html>
