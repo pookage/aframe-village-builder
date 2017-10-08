@@ -7,21 +7,15 @@ AFRAME.registerComponent("task_manager", {
 					destination: "#farm"
 				},
 				{
+					type: "interaction",
+					action: "harvest",
+					target: "#farm",
+					quantity: 3
+				},
+				{
 					type: "travel",
 					destination: "#windmill"
 				},
-				{
-					type: "travel",
-					destination: "#bakery"
-				},
-				{
-					type: "travel",
-					destination: {
-						x: 0,
-						y: 0,
-						z: 0
-					}
-				}
 			]
 		}
 	},
@@ -59,6 +53,11 @@ AFRAME.registerComponent("task_manager", {
 				const navigator    = this.el.components.navigator;
 				const destination  = task.destination;
 				await navigator.moveTo(destination);
+				break;
+			case "interaction":
+				const target = document.querySelectorAll(task.target)[0].getMainComponent();
+				const items  = await target[task.action](task.quantity);
+				console.log(items); //CREATE AN INVENTORY MANAGER AND ADD THE WHEAT TO THE DUDE'S INVENTORY
 				break;
 		}
 		this.nextTask(true);

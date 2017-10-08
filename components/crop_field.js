@@ -34,6 +34,7 @@ AFRAME.registerComponent("crop_field", {
 	init: function(){
 		const element   = this.el;
 
+		AFRAME.utils.bind(this.harvest, this);
 		AFRAME.utils.bind(this.getMainComponent, this)
 		element.getMainComponent = this.getMainComponent.bind(this);
 
@@ -46,6 +47,7 @@ AFRAME.registerComponent("crop_field", {
 		const cropType  = data.type;
 		const cropCount = data.count;
 		const container = POOKAGE.utils.createElement("a-entity", {
+			class: "crop-container",
 			rotation: "90 0 0",
 			position: "0 0 0"
 		});
@@ -69,11 +71,37 @@ AFRAME.registerComponent("crop_field", {
 			}
 		}
 		element.appendChild(container);
+		this.container = container;
 	},
 	getMainComponent: function(){
+
 		return this;
 	},
-	harvest: function(count){
-		
+	harvest: function(count=0){
+		return new Promise((resolve, reject) => {
+			const element    = this.el;
+			const children   = this.container.children;
+			const cropCount  = this.data.count;
+			const startIndex = cropCount-1;
+			const harvest    = [];
+
+			//HARVEST TIMED LOOP
+			let cropIndex = startIndex;
+			let currentCrop, cropType;
+			const harvestInterval = setInterval(()=> {
+				if(harvest.length < count){
+					currentCrop = children[cropIndex];
+					harvest.push({
+						name: "crop",
+						type: currentCrop.getAttribute("type")
+					});
+					this.container.removeChild(currentCrop);
+					this.data.count = this.container.children.length;
+					cropIndex--;
+				} else {
+					resolve(harvest);
+				}
+			}, 1000)
+		});
 	}//harvet
 })
