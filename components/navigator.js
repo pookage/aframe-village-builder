@@ -7,7 +7,7 @@ AFRAME.registerComponent("navigator", {
 			type: "vec3"
 		},
 		speed: {
-			default: 0.002
+			default: 0.1
 		},
 		atDestination: {
 			default: true
@@ -35,7 +35,7 @@ AFRAME.registerComponent("navigator", {
 
 			const distance = {
 				x: currentPos.x - destination.x,
-				y: currentPos.y - destination.y,
+				y: currentPos.y,
 				z: currentPos.z - destination.z
 			};
 
@@ -66,11 +66,15 @@ AFRAME.registerComponent("navigator", {
 			}
 			this.data.atDestination = false;
 			this.data.destination = targetPos;
-			this.data.direction   = {
-				x: currentPos.x - targetPos.x,
-				y: currentPos.y - targetPos.y,
-				z: currentPos.z - targetPos.z
-			}
+
+
+			const absoluteDirection = new THREE.Vector3(
+				currentPos.x - targetPos.x, 
+				currentPos.y, 
+				currentPos.z - targetPos.z
+			);
+
+			this.data.direction   = absoluteDirection.normalize();
 			this.resolver = resolve;
 		})
 	}
