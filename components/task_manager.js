@@ -5,9 +5,9 @@ AFRAME.registerComponent("task_manager", {
 				{
 					type: "travel",
 					destination: {
-						x: -2,
+						x: -20,
 						y: 0,
-						z: 5
+						z: 50
 					}
 				},
 				{
@@ -18,33 +18,7 @@ AFRAME.registerComponent("task_manager", {
 				{
 					type: "travel",
 					destination: "#farm"
-				},
-				// {
-				// 	type: "interaction",
-				// 	action: "harvest",
-				// 	target: "#farm",
-				// 	quantity: 5
-				// },
-				{
-					type: "travel",
-					destination: "#windmill"
-				},
-				{
-					type: "travel",
-					destination: "#farm"
-				},
-				{
-					type: "travel",
-					destination: "#windmill"
-				},
-				{
-					type: "travel",
-					destination: "#farm"
-				},
-				{
-					type: "travel",
-					destination: "#bakery"
-				},
+				}
 			]
 		}
 	},
@@ -76,8 +50,6 @@ AFRAME.registerComponent("task_manager", {
 		}
 	},
 	performTask: async function(task){
-
-		console.log("performing task : ", task)
 
 		switch(task.type){
 			case "travel":

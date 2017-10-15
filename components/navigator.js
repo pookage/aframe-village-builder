@@ -11,6 +11,9 @@ AFRAME.registerComponent("navigator", {
 		},
 		atDestination: {
 			default: true
+		},
+		nearby: {
+			default: 0.25
 		}
 	},
 	init: function(){
@@ -39,7 +42,12 @@ AFRAME.registerComponent("navigator", {
 				z: currentPos.z - destination.z
 			};
 
-			if(distance.x < 0.5 && distance.x > -0.5){
+			console.log(this.nearby)
+
+			const atXPos = distance.x < data.nearby && distance.x > -data.nearby;
+			const atYPos = distance.z < data.nearby && distance.z > -data.nearby;
+
+			if(atXPos && atYPos){
 				this.data.atDestination = true;
 				this.resolver(true);
 			} else {
